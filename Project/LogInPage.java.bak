@@ -1,0 +1,126 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+class Bg extends JPanel{
+	private Image bgImage;
+	public Bg(String imagePath)
+	{
+		this.bgImage = new ImageIcon(imagePath).getImage();
+	}
+	protected void paintComponent(Graphics g)
+	{
+		super.paintComponent(g);
+		if(bgImage !=null)
+	{
+		g.drawImage(bgImage,0,0,getWidth(),getHeight(),this);
+	}
+
+
+	}
+
+
+}
+public class LogInPage extends JFrame implements ActionListener{
+	JLabel l,l1,l2;
+	TextField t;
+	JPasswordField pass;
+	Font font,f,f1;
+	JButton b,b1;
+	public LogInPage()
+	{
+		setBounds(0,0,1920,1080);
+		setTitle("LogIn Page");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setLocationRelativeTo(null);
+		Bg bgImage = new Bg("C:\\Users\\SIYAM\\Desktop\\JAVA PROJECT\\login.png");
+		bgImage.setLayout(null);
+		font = new Font("Times New Roman",Font.BOLD,45);
+		f = new Font("Times New Roman",Font.BOLD,25);
+		f1= new Font("Times New Roman",Font.BOLD,15);
+		l = new JLabel("Sign In");
+		l.setBounds(270,350,200,100);
+		l.setFont(font);
+		l.setForeground(Color.BLACK);
+		bgImage.add(l);
+		l1 = new JLabel("Username");
+		l1.setBounds(170,472,140,30);
+		l1.setFont(f);
+		l1.setForeground(Color.BLACK);
+		bgImage.add(l1);
+		t= new TextField("");
+		t.setBounds(310,472,220,30);
+		t.setBackground(Color.LIGHT_GRAY);
+		t.setFont(f1);
+		l2 = new JLabel("Password");
+		l2.setBounds(170,545,140,30);
+		l2.setForeground(Color.BLACK);
+		l2.setFont(f);
+		bgImage.add(l2);
+		bgImage.add(t);
+		pass = new JPasswordField("");
+		pass.setBounds(310,545,220,30);
+		pass.setBackground(Color.LIGHT_GRAY);
+		pass.setFont(f1);
+		bgImage.add(pass);
+		b = new JButton("Log In");
+		b.setBounds(240,620,90,30);
+		b.setBackground(Color.CYAN);
+		b.setFont(f1);
+		bgImage.add(b);
+		b1 = new JButton("Sign Up");
+		b1.setBounds(380,620,90,30);
+		b1.setBackground(Color.CYAN);
+		b1.setFont(f1);
+		bgImage.add(b1);
+		
+		add(bgImage);
+		b.addActionListener(this);
+		b1.addActionListener(this);
+	
+		setVisible(true);
+		
+	}
+	public void actionPerformed(ActionEvent e)
+	{
+		String s1,s2;
+		s1 = t.getText();
+	    s2 = new String(pass.getPassword());
+		if(e.getSource()==b){
+			
+		JOptionPane.showMessageDialog(null,"Your Username: "+s1,"Username",JOptionPane.INFORMATION_MESSAGE);
+		JOptionPane.showMessageDialog(null,"Your Password: "+s2,"Password",JOptionPane.INFORMATION_MESSAGE);
+		dispose();
+		}
+		else if(e.getSource()==b1)
+		{
+			JOptionPane.showMessageDialog(null,s1+" Sir/Madam! Please Wait Until the Signup Page is Created.","Error",JOptionPane.ERROR_MESSAGE);
+			// openSignUpPage();
+		    
+
+		}
+	}
+	
+    private void openSignUpPage() {
+		dispose();
+        SignUpPage signUpPage = new SignUpPage();
+        signUpPage.setVisible(true);
+    }
+	public static void main(String[]args)
+	{
+		new LogInPage();
+
+
+
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+}

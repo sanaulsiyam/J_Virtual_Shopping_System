@@ -1,0 +1,2 @@
+Shoe 1 500
+Sweater 1 256

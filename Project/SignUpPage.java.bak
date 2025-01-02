@@ -1,0 +1,162 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+class BackgroundPanel extends JPanel {
+    private Image backgroundImage;
+
+    public BackgroundPanel(String imagePath) {
+        this.backgroundImage = new ImageIcon(imagePath).getImage();
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        if (backgroundImage != null) {
+            g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
+        }
+    }
+}
+
+public class SignUpPage extends JFrame implements ActionListener{
+    TextField t, t1, t2, t3;
+    JLabel l1, l2, l3, l4, l5, l6;  
+    JPanel panel;
+    JButton b1, b2, b3;
+    Font font = new Font("Times New Roman", Font.BOLD,15 );
+    Font f = new Font ("Times New Roman",Font.BOLD,12);
+    JRadioButton maleRadioButton, femaleRadioButton;
+    ButtonGroup genderGroup;
+    JComboBox<String> countryComboBox;
+	
+	public void buttonClicked() {
+        // Your implementation for buttonClicked
+        System.out.println("Button clicked in Gui1 class");
+
+        // Add your specific logic or actions here
+        // For example, display a message dialog
+        JOptionPane.showMessageDialog(null, "Button clicked in Gui1 class");
+    }
+
+    public SignUpPage() {
+        setTitle("System Management Interface");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setBounds(0, 0, 1920, 1080);
+
+        
+        BackgroundPanel backgroundPanel = new BackgroundPanel("D:\\Photos\\siyam.jpg");
+        backgroundPanel.setLayout(null);
+
+        l1 = new JLabel("First Name");
+        l1.setBounds(20,20, 150, 25);
+        l1.setFont(font);
+        backgroundPanel.add(l1);
+
+        l2 = new JLabel("Last Name");
+        l2.setBounds(20, 50, 150, 25);
+        l2.setFont(font);
+        backgroundPanel.add(l2);
+
+        l3 = new JLabel("Course Name");
+        l3.setBounds(20, 80, 150, 25);
+        l3.setFont(font);
+        backgroundPanel.add(l3);
+
+        l4 = new JLabel("Department Name");
+        l4.setBounds(20, 110, 150, 25);
+        l4.setFont(font);
+        backgroundPanel.add(l4);
+
+        l5 = new JLabel("Gender");
+        l5.setBounds(50, 180, 150, 25);
+        l5.setFont(font);
+        backgroundPanel.add(l5);
+
+        l6 = new JLabel("Country");
+        l6.setBounds(50, 210, 150, 25);
+        l6.setFont(font);
+        backgroundPanel.add(l6);
+
+        t = new TextField("", 20);
+        t.setBounds(170, 20, 150, 25);
+        t.setFont(f);
+        backgroundPanel.add(t);
+
+        t1 = new TextField("", 20);
+        t1.setBounds(170, 50, 150, 25);
+        t1.setFont(f);
+        backgroundPanel.add(t1);
+
+        t2 = new TextField("", 20);
+        t2.setBounds(170, 80, 150, 25);
+        t2.setFont(f);
+        backgroundPanel.add(t2);
+
+        t3 = new TextField("", 20);
+        t3.setBounds(170, 110, 150, 25);
+        t3.setFont(f);
+        backgroundPanel.add(t3);
+
+        String[] countries = {"Select a country", "USA", "UK", "Canada", "Australia", "Bangladesh"};
+        countryComboBox = new JComboBox<>(countries);
+        countryComboBox.setBounds(170, 210, 150, 25);
+        backgroundPanel.add(countryComboBox);
+
+        maleRadioButton = new JRadioButton("Male");
+        femaleRadioButton = new JRadioButton("Female");
+
+        maleRadioButton.setBounds(170, 180, 70, 25);
+        femaleRadioButton.setBounds(250, 180, 80, 25);
+
+        genderGroup = new ButtonGroup();
+        genderGroup.add(maleRadioButton);
+        genderGroup.add(femaleRadioButton);
+
+        backgroundPanel.add(maleRadioButton);
+        backgroundPanel.add(femaleRadioButton);
+
+        b1 = new JButton("Save");
+        b1.setBounds(170, 270, 82, 25);
+        b1.setFont(font);
+        backgroundPanel.add(b1);
+
+        b2 = new JButton("Delete");
+        b2.setBounds(270, 270, 82, 25);
+        b2.setFont(font);
+        backgroundPanel.add(b2);
+
+        b3 = new JButton("Exit");
+        b3.setBounds(220, 300, 70, 25);
+        b3.setFont(font);
+        backgroundPanel.add(b3);
+        setContentPane(backgroundPanel);
+        setVisible(true);
+         b1.addActionListener(this);
+    }
+    public void actionPerformed(ActionEvent e){
+        String s1 = t.getText();
+        String s2 = t1.getText();
+       
+        
+        if(s2.equals("")||s1.equals(""))
+        {
+            JOptionPane.showMessageDialog(null,"Please Fill the form first","Warning",JOptionPane.WARNING_MESSAGE);
+            
+        }
+        else{
+            JOptionPane.showMessageDialog(null,"Your First Name : "+s1,"Username",JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null,"Your Last Name : "+s2,"Username",JOptionPane.INFORMATION_MESSAGE);
+            
+        }
+    }
+
+     
+
+
+
+
+
+    public static void main(String[] args) {
+        new SignUpPage();
+    }
+}
